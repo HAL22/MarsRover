@@ -1,24 +1,47 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class driver
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
-        String current_zone = "8 10";
-        String starting = "1 2 E";
-        String commands = "MMLMRMMRRMML";
 
-        String[] zone = current_zone.split(" ");
-        String[] start = starting.split(" ");
+        //Variables
+        String[] Cmds = new String[3];
+        String[] Zone;
+        String[] Start;
+        String CommandList;
 
-        RoverNavigationSystem roverNavigationSystem = new RoverNavigationSystem(Integer.parseInt(zone[0]),Integer.parseInt(zone[1]),Integer.parseInt(start[1]),Integer.parseInt(start[0]),start[2].charAt(0));
-
-
-        for(int i=0;i<commands.length();i++)
+        // Reading the commands
+        File file = new File(args[0]);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        int count=0;
+        while ((line = br.readLine()) != null)
         {
-            roverNavigationSystem.navigate(commands.charAt(i));
+            Cmds[count] = line;
+            count++;
 
-            System.out.println("Command: "+commands.charAt(i)+" | result: "+roverNavigationSystem.printPostionAndOrientation());
+        }
+        Zone = Cmds[0].split(" ");
+        Start = Cmds[1].split(" ");
+        CommandList = Cmds[2];
+
+
+        RoverNavigationSystem roverNavigationSystem = new RoverNavigationSystem(Integer.parseInt(Zone[0]),Integer.parseInt(Zone[1]),Integer.parseInt(Start[0]),Integer.parseInt(Start[1]),Start[2].charAt(0));
+
+        //Reading the commands
+        for(int i=0;i<CommandList.length();i++)
+        {
+            roverNavigationSystem.navigate(CommandList.charAt(i));
+
         }
 
-        //System.out.println(roverNavigationSystem.printPostionAndOrientation());
+        //Printing the results
+        System.out.println("A rover starting at: "+Cmds[1]+" in this zone: "+Cmds[0]);
+        System.out.println("would land up at: "+roverNavigationSystem.printPostionAndOrientation()+" after these commands: "+CommandList);
+
+
     }
 }

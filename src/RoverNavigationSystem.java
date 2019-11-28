@@ -8,7 +8,7 @@ public class RoverNavigationSystem
     private char ORIENTATION;
     private boolean OUTOFBOUNDS;
 
-    public RoverNavigationSystem(int gridy,int gridx,int roverx,int rovery, char orientation)
+    public RoverNavigationSystem(int gridx,int gridy,int roverx,int rovery, char orientation)
     {
         this.GRID_X = gridx;
         this.GRID_Y = gridy;
@@ -21,7 +21,7 @@ public class RoverNavigationSystem
 
     }
 
-    public void navigate(char action)
+    public void navigate(char action) throws Exception
     {
         if(action == 'M')
         {
@@ -71,14 +71,10 @@ public class RoverNavigationSystem
 
         }
 
-        else
-        {
-
-        }
 
     }
 
-    public void changeOrientation(char rotation)
+    public void changeOrientation(char rotation) throws Exception
     {
         if(rotation =='R')
         {
@@ -106,10 +102,7 @@ public class RoverNavigationSystem
 
             }
 
-            else
-                {
 
-                }
 
 
         }
@@ -141,12 +134,11 @@ public class RoverNavigationSystem
 
             }
 
-            else
-            {
-
-            }
-
         }
+        else
+            {
+                throw new Exception("Rotation not understood");
+            }
 
     }
 
