@@ -28,7 +28,7 @@ public class RoverNavigationSystemTest {
     }
 
     @Test
-    public void moveRover() throws Exception
+    public void moveRover() throws Exception  //Testing if the rover moves in the correct direction
     {
         RoverNavigationSystem roverNavigationSystem = new RoverNavigationSystem(10,8,2,3,'N');
 
@@ -56,7 +56,7 @@ public class RoverNavigationSystemTest {
     }
 
     @Test
-    public void navigate() throws Exception
+    public void navigate() throws Exception //Testing if the rover will end in the correct position after a sequences of commands
     {
         RoverNavigationSystem rover1 = new RoverNavigationSystem(8,10,1,2,'E');
         String cmd1 = "MMLMRMMRRMML";
